@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 20% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 270 67% 63%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 215 16% 60%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 20% 6%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 20%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    --cyber-blue: 199 89% 48%;
+    --cyber-purple: 270 67% 63%;
+    --cyber-green: 142 76% 36%;
+    --cyber-orange: 38 92% 50%;
+
+    --glow-blue: 199 89% 48%;
+    --glow-purple: 270 67% 63%;
+    --glow-green: 142 76% 36%;
+  }
+}
+
+@layer utilities {
+  .text-gradient-cyber {
+    @apply bg-gradient-to-r from-[hsl(var(--cyber-blue))] via-[hsl(var(--cyber-purple))] to-[hsl(var(--cyber-green))] bg-clip-text text-transparent;
+  }
+
+  .text-gradient-blue-purple {
+    @apply bg-gradient-to-r from-[hsl(var(--cyber-blue))] to-[hsl(var(--cyber-purple))] bg-clip-text text-transparent;
+  }
+
+  .border-glow-blue {
+    @apply border-[hsl(var(--cyber-blue)/0.5)] shadow-[0_0_20px_hsl(var(--glow-blue)/0.3)];
+  }
+
+  .border-glow-purple {
+    @apply border-[hsl(var(--cyber-purple)/0.5)] shadow-[0_0_20px_hsl(var(--glow-purple)/0.3)];
+  }
+
+  .border-glow-green {
+    @apply border-[hsl(var(--cyber-green)/0.5)] shadow-[0_0_20px_hsl(var(--glow-green)/0.3)];
+  }
+
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .cyber-card {
+    @apply bg-card border border-border rounded-xl overflow-hidden relative;
+    @apply hover:border-[hsl(var(--cyber-blue)/0.5)] transition-all duration-300;
+  }
+
+  .cyber-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300 pointer-events-none;
+    background: radial-gradient(circle at 50% 0%, hsl(var(--cyber-blue) / 0.1), transparent 70%);
+  }
+
+  .cyber-card:hover::before {
+    @apply opacity-100;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
